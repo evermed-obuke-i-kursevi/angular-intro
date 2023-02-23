@@ -11,4 +11,42 @@
     Change Product Name
 </button>
 
-<app-product-item></app-product-item>
+<br>
+<br>
+
+<!-- primer Two-Way Data Binding-a uz pomocu ngModel direktive -->
+<input *ngIf="isDisabled" type="text" [(ngModel)]="productName">
+
+<br>
+<br>
+
+<!-- <button (click)="onAddItem()">
+  Add Product
+</button> -->
+
+<div *ngIf="productsList?.length; else noProductsAvailable">
+  <ul>
+    <app-product-item
+      *ngFor="let item of productsList"
+      [productName]="item"
+      (productTitleClicked)="onRemoveItem($event)">
+    </app-product-item>
+  </ul>
+</div>
+
+<ng-template #noProductsAvailable>
+  <p>Currently no items are available in the List</p>
+</ng-template>
+
+<br>
+<br>
+
+<h3>Angular Form example</h3>
+<!-- 1. Template Driven forme (mi cemo njih koristiti) -->
+<!-- 2. Reactive forme -->
+<form (ngSubmit)="onAddItem(form)" #form="ngForm">
+  <input ngModel name="product" type="text" required>
+  <br>
+  <br>
+  <button type="submit">Submit</button>
+</form>

@@ -1,1 +1,3 @@
-<p>product-item works!</p>
+<p (click)="onNameClicked($any($event.target).innerText)">
+  {{ productName }}
+</p>
